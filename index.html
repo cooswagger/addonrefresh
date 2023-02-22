@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Incrementing Number</title>
-<link rel="shortcut icon" type="image/x-icon" href="icon.png"/>
-    <style>
-      #number-container {
-        font-size: 10em;
-        text-align: center;
-        font-family: "Comic Sans MS", cursive, sans-serif;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>My website</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    .gray-background {
+      background-color: #CCCCCC;
+    }
+    .sphere {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: red;
+    }
+    #sphere {
+      left: 50px;
+      top: calc(50% - 50px);
+    }
+    #sphere2 {
+      right: 50px;
+      top: calc(50% - 50px);
+    }
+    #counter {
+      font-size: 150px;
+      font-family: Comic Sans MS, sans-serif;
+      text-align: center;
+      margin: auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(50% - 100px);
+    }
+  </style>
+</head>
 <body class="gray-background">
-    <div id="number-container"></div>
+  <div id="sphere" class="sphere"></div>
+  <div id="sphere2" class="sphere"></div>
+  <div id="counter">0</div>
+  
+  <script>
+    // Move the spheres up and down smoothly
+    gsap.to("#sphere", { duration: 1, yoyo: true, repeat: -1, y: 50 });
+    gsap.to("#sphere2", { duration: 1, yoyo: true, repeat: -1, y: -50 });
+    
+    // Update the counter on page refresh
+    let count = localStorage.getItem("count") || 0;
+    document.getElementById("counter").textContent = count;
 
-    <script>
-      // Get the number from local storage, or set to 0 if not found
-      let number = parseInt(localStorage.getItem("number")) || 0;
-
-      // Display the number in the container
-      document.getElementById("number-container").innerText = number;
-
-      // Increment the number on page refresh
-      number++;
-      localStorage.setItem("number", number);
-
-    </script>
-  </body>
+    // Increment the counter on page refresh
+    count++;
+    localStorage.setItem("count", count);
+  </script>
+</body>
 </html>
