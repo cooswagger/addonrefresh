@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Incrementing Number</title>
+    <style>
+      #number-container {
+        font-size: 10em;
+        text-align: center;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="number-container"></div>
+
+    <script>
+      // Get the number from local storage, or set to 0 if not found
+      let number = parseInt(localStorage.getItem("number")) || 0;
+
+      // Display the number in the container
+      document.getElementById("number-container").innerText = number;
+
+      // Increment the number on page refresh
+      number++;
+      localStorage.setItem("number", number);
+
+    </script>
+  </body>
+</html>
